@@ -14,6 +14,8 @@
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     .skip-link { position: absolute; top: -100px; left: 10px; z-index: 10000; background: var(--primary); color: white; padding: 8px 16px; border-radius: var(--border-radius-sm); }
     .skip-link:focus { top: 10px; }
+    .construction-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: linear-gradient(90deg, #f59e0b, #d97706); color: #000; text-align: center; padding: 10px 20px; font-size: 14px; font-weight: 600; }
+    .construction-banner span { margin-right: 8px; }
     .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
     .grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"); opacity: 0.4; }
     .glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; animation: float 20s ease-in-out infinite; }
@@ -22,8 +24,8 @@
     .g3 { width: 400px; height: 400px; background: radial-gradient(circle, #06b6d4 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -15s; }
     @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(50px, -50px) scale(1.1); } 66% { transform: translate(-50px, 50px) scale(0.9); } }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .main { min-height: 60vh; padding-top: 100px; }
-    .header { position: sticky; top: 0; z-index: 100; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .main { min-height: 60vh; padding-top: 140px; }
+    .header { position: fixed; top: 40px; left: 0; right: 0; z-index: 100; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .brand { font-weight: 600; font-size: 18px; transition: opacity var(--transition); }
     .brand:hover { opacity: 0.8; }
@@ -39,7 +41,7 @@
     .burger[aria-expanded="true"] span { background: transparent; }
     .burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
     .burger[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
-    .mobile-nav { display: none; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .mobile-nav { display: none; position: fixed; top: 112px; left: 0; right: 0; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.08); z-index: 99; }
     .mobile-nav[data-open="true"] { display: block; }
     .mobile-nav-inner { display: flex; flex-direction: column; gap: 8px; padding: 24px; }
     .mobile-link { padding: 12px 16px; border-radius: var(--border-radius-sm); color: var(--gray-300); font-weight: 500; transition: var(--transition); display: block; }
@@ -87,10 +89,14 @@
     .content-page a { color: var(--primary); text-decoration: underline; transition: color var(--transition); }
     .content-page a:hover { color: var(--primary-hover); }
     .highlight-box { background: rgba(59, 130, 246, 0.05); border-left: 3px solid var(--primary); padding: 20px; margin: 24px 0; border-radius: 8px; }
-    @media (max-width: 768px) { .nav { display: none; } .burger { display: block; } .footer-inner { flex-direction: column; text-align: center; gap: 24px; } .cookie-actions { flex-direction: column; } }
+    .divider { border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 64px 0; }
+    @media (max-width: 768px) { .nav { display: none; } .burger { display: block; } .footer-inner { flex-direction: column; text-align: center; gap: 24px; } .cookie-actions { flex-direction: column; } .construction-banner { font-size: 12px; padding: 8px 16px; } }
   </style>
 </head>
 <body>
+  <div class="construction-banner">
+    <span>🚧</span> This website is currently under construction. Some features may not be available yet.
+  </div>
   <a class="skip-link" href="#content">Skip to content</a>
   <div class="bg" aria-hidden="true">
     <div class="grain"></div>
@@ -123,15 +129,22 @@
         <h1 class="h1">Privacy <span class="grad">Policy</span></h1>
         <p class="lead">Last updated: January 15, 2026</p>
 
-        <h2>Who We Are</h2>
+        <!-- Company Information Section -->
+        <h2>Company Information</h2>
         <p>Social Growth Studio Ltd ("we", "us", "our") is the controller and responsible for your personal data. We are committed to protecting and respecting your privacy in accordance with the UK General Data Protection Regulation (UK GDPR), the Data Protection Act 2018, and other applicable data protection legislation.</p>
         
         <p><strong>Company Details:</strong><br>
         Social Growth Studio Ltd<br>
         Company Number: 14892156<br>
+        VAT Registration Number: GB428957314<br>
         Registered Office: 6-4 Bath St, London EC1V 9LB, United Kingdom<br>
-        Email: <a href="mailto:privacy@socialgrowthstudio.com">privacy@socialgrowthstudio.com</a><br>
-        Phone: +44 20 7946 0958</p>
+        Email: <a href="mailto:hello@socialgrowthstudio.com">hello@socialgrowthstudio.com</a></p>
+
+        <p><strong>Directors:</strong><br>
+        Marcus J. Reynolds, Managing Director<br>
+        Sarah K. Thompson, Operations Director</p>
+
+        <p>This website is hosted and maintained by Paul Mommsen - Webstudio.</p>
 
         <h2>What Information We Collect</h2>
         <p>We collect personal information that you provide to us when you use our services, express interest in our products, or contact us. This may include:</p>
@@ -146,7 +159,6 @@
         <h3>Contact Data</h3>
         <ul>
           <li>Email address</li>
-          <li>Telephone number</li>
           <li>Billing address</li>
           <li>Social media profile links (if provided)</li>
         </ul>
@@ -237,8 +249,63 @@
         <h2>International Data Transfers</h2>
         <p>Your information may be transferred to and processed in countries outside the United Kingdom. We ensure appropriate safeguards are in place for such transfers in accordance with UK data protection laws.</p>
 
-        <h2>Third-Party Links</h2>
+        <hr class="divider">
+
+        <!-- Legal Notices Section (formerly Imprint) -->
+        <h2>Legal Notices</h2>
+
+        <h3>Professional Indemnity Insurance</h3>
+        <p>
+          <strong>Provider:</strong> Hiscox Insurance Company Ltd<br>
+          <strong>Policy Number:</strong> PI-UK-28947362<br>
+          <strong>Coverage:</strong> £2,000,000<br>
+          <strong>Territorial Coverage:</strong> United Kingdom and European Union
+        </p>
+
+        <h3>Regulatory Information</h3>
+        <p>Social Growth Studio Ltd operates in accordance with UK business regulations and is committed to maintaining the highest standards of professional conduct and business ethics.</p>
+
+        <h3>Dispute Resolution</h3>
+        <p>The European Commission provides a platform for online dispute resolution (ODR) available at: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+        <p>We are not obliged and do not participate in dispute resolution proceedings before a consumer arbitration board. However, we are committed to resolving any disputes amicably and encourage you to contact us directly with any concerns.</p>
+
+        <h3>Content Responsibility</h3>
+        <p>
+          <strong>Responsible for Content:</strong><br>
+          Marcus J. Reynolds<br>
+          Social Growth Studio Ltd<br>
+          6-4 Bath St, London EC1V 9LB, United Kingdom
+        </p>
+        <p>We are responsible for our own content on these pages in accordance with general laws. We are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.</p>
+
+        <h3>Copyright and Intellectual Property</h3>
+        <p>All content, logos, design elements, and materials on this website are protected by copyright and belong to Social Growth Studio Ltd unless otherwise stated. Unauthorized use, reproduction, or distribution of any materials from this website is strictly prohibited.</p>
+        <p>Permissions for use of content must be obtained by contacting us at: <a href="mailto:hello@socialgrowthstudio.com">hello@socialgrowthstudio.com</a></p>
+
+        <h3>External Links Disclaimer</h3>
+        <p>Our website may contain links to external third-party websites. We have no influence over the content of these external sites and cannot accept responsibility for their content. The respective provider or operator is always responsible for the content of linked pages.</p>
+        <p>Linked pages were checked for possible legal violations at the time of linking. No illegal content was apparent at the time of linking. Ongoing monitoring of linked pages is not reasonable without concrete evidence of a violation. Upon becoming aware of legal violations, we will remove such links immediately.</p>
+
+        <h3>Third-Party Links</h3>
         <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites. We encourage you to read the privacy policies of any third-party websites you visit.</p>
+
+        <h3>Technical Service Providers</h3>
+        <p>
+          <strong>Website Development & Hosting:</strong><br>
+          Paul Mommsen - Webstudio<br>
+          Germany<br>
+          <a href="mailto:contact@paulmommsen.com">contact@paulmommsen.com</a>
+        </p>
+        <p>
+          <strong>Email Service Provider:</strong><br>
+          Google Workspace<br>
+          1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+        </p>
+
+        <h3>Trade Marks</h3>
+        <p>"Social Growth Studio" and associated logos are trademarks of Social Growth Studio Ltd. All rights reserved. Unauthorized use of our trademarks is strictly prohibited.</p>
+
+        <hr class="divider">
 
         <h2>Changes to This Policy</h2>
         <p>We may update this privacy policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated policy on our website with a new "Last updated" date.</p>
@@ -249,17 +316,15 @@
         <p><strong>Information Commissioner's Office</strong><br>
         Wycliffe House, Water Lane<br>
         Wilmslow, Cheshire SK9 5AF<br>
-        Tel: 0303 123 1113<br>
         Website: <a href="https://www.ico.org.uk" target="_blank" rel="noopener">www.ico.org.uk</a></p>
 
         <h2>Contact Us</h2>
-        <p>If you have any questions about this privacy policy or how we handle your personal data, please contact us:</p>
+        <p>If you have any questions about this privacy policy, how we handle your personal data, or any complaints or feedback, please contact us:</p>
         <p>
-          <strong>Data Protection Officer</strong><br>
           Social Growth Studio Ltd<br>
           6-4 Bath St, London EC1V 9LB, United Kingdom<br>
-          Email: <a href="mailto:privacy@socialgrowthstudio.com">privacy@socialgrowthstudio.com</a><br>
-          Phone: +44 20 7946 0958
+          Email: <a href="mailto:hello@socialgrowthstudio.com">hello@socialgrowthstudio.com</a><br>
+          Privacy enquiries: <a href="mailto:privacy@socialgrowthstudio.com">privacy@socialgrowthstudio.com</a>
         </p>
       </div>
     </div>
@@ -273,7 +338,6 @@
       <div class="footer-links">
         <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy</a>
-        <a href="imprint.html">Imprint</a>
       </div>
     </div>
   </footer>
@@ -294,8 +358,6 @@
       </div>
       <div class="cookie-links">
         <a href="privacy.html">Privacy</a>
-        <span aria-hidden="true">·</span>
-        <a href="imprint.html">Imprint</a>
       </div>
     </section>
   </div>
