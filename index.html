@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,6 +14,8 @@
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     .skip-link { position: absolute; top: -100px; left: 10px; z-index: 10000; background: var(--primary); color: white; padding: 8px 16px; border-radius: var(--border-radius-sm); }
     .skip-link:focus { top: 10px; }
+    .construction-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: linear-gradient(90deg, #f59e0b, #d97706); color: #000; text-align: center; padding: 10px 20px; font-size: 14px; font-weight: 600; }
+    .construction-banner span { margin-right: 8px; }
     .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
     .grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"); opacity: 0.4; }
     .glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; animation: float 20s ease-in-out infinite; }
@@ -22,8 +24,8 @@
     .g3 { width: 400px; height: 400px; background: radial-gradient(circle, #06b6d4 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -15s; }
     @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(50px, -50px) scale(1.1); } 66% { transform: translate(-50px, 50px) scale(0.9); } }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .main { min-height: 60vh; padding-top: 100px; }
-    .header { position: sticky; top: 0; z-index: 100; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .main { min-height: 60vh; padding-top: 140px; }
+    .header { position: fixed; top: 40px; left: 0; right: 0; z-index: 100; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
     .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .brand { font-weight: 600; font-size: 18px; transition: opacity var(--transition); }
     .brand:hover { opacity: 0.8; }
@@ -39,7 +41,7 @@
     .burger[aria-expanded="true"] span { background: transparent; }
     .burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
     .burger[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
-    .mobile-nav { display: none; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .mobile-nav { display: none; position: fixed; top: 112px; left: 0; right: 0; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.08); z-index: 99; }
     .mobile-nav[data-open="true"] { display: block; }
     .mobile-nav-inner { display: flex; flex-direction: column; gap: 8px; padding: 24px; }
     .mobile-link { padding: 12px 16px; border-radius: var(--border-radius-sm); color: var(--gray-300); font-weight: 500; transition: var(--transition); display: block; }
@@ -130,10 +132,13 @@
     .cookie-links a { color: var(--gray-400); transition: color var(--transition); }
     .cookie-links a:hover { color: var(--white); }
     @media (max-width: 1024px) { .hero { grid-template-columns: 1fr; gap: 48px; } .section-head { grid-template-columns: 1fr; gap: 24px; } .grid3 { grid-template-columns: 1fr; } }
-    @media (max-width: 768px) { .nav { display: none; } .burger { display: block; } .stats { grid-template-columns: 1fr; } .dash { grid-template-columns: 1fr; } .cta-strip { flex-direction: column; text-align: center; } .footer-inner { flex-direction: column; text-align: center; gap: 24px; } .cookie-actions { flex-direction: column; } }
+    @media (max-width: 768px) { .nav { display: none; } .burger { display: block; } .stats { grid-template-columns: 1fr; } .dash { grid-template-columns: 1fr; } .cta-strip { flex-direction: column; text-align: center; } .footer-inner { flex-direction: column; text-align: center; gap: 24px; } .cookie-actions { flex-direction: column; } .construction-banner { font-size: 12px; padding: 8px 16px; } }
   </style>
 </head>
 <body>
+  <div class="construction-banner">
+    <span>🚧</span> This website is currently under construction. Some features may not be available yet.
+  </div>
   <a class="skip-link" href="#content">Skip to content</a>
   <div class="bg" aria-hidden="true">
     <div class="grain"></div>
@@ -248,7 +253,6 @@
       <div class="footer-links">
         <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy</a>
-        <a href="imprint.html">Imprint</a>
       </div>
     </div>
   </footer>
@@ -269,16 +273,12 @@
       </div>
       <div class="cookie-links">
         <a href="privacy.html">Privacy</a>
-        <span aria-hidden="true">·</span>
-        <a href="imprint.html">Imprint</a>
       </div>
     </section>
   </div>
   <script>
-    // Mobile Navigation
     const burger = document.querySelector('[data-burger]');
     const mobileNav = document.querySelector('[data-mobile-nav]');
-    
     if (burger && mobileNav) {
       burger.addEventListener('click', () => {
         const isOpen = burger.getAttribute('aria-expanded') === 'true';
@@ -286,7 +286,6 @@
         mobileNav.setAttribute('data-open', !isOpen);
         document.body.style.overflow = isOpen ? '' : 'hidden';
       });
-      
       const mobileLinks = mobileNav.querySelectorAll('.mobile-link');
       mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -296,61 +295,49 @@
         });
       });
     }
-    
-    // Cookie Banner
     const COOKIE_NAME = 'sgs_cookie_consent';
     const cookieBanner = document.querySelector('[data-cookie-banner]');
     const cookieCloseBtns = document.querySelectorAll('[data-cookie-close]');
     const cookieAcceptBtn = document.querySelector('[data-cookie-accept]');
     const cookieRejectBtn = document.querySelector('[data-cookie-reject]');
-    
     function getCookieConsent() {
       const value = document.cookie.split('; ').find(row => row.startsWith(COOKIE_NAME + '='));
       return value ? value.split('=')[1] : null;
     }
-    
     function setCookieConsent(value) {
       const expiryDate = new Date();
       expiryDate.setFullYear(expiryDate.getFullYear() + 1);
       document.cookie = `${COOKIE_NAME}=${value}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
     }
-    
     function checkCookieBanner() {
       const consent = getCookieConsent();
       if (!consent && cookieBanner) {
         cookieBanner.removeAttribute('hidden');
       }
     }
-    
     function closeBanner() {
       if (cookieBanner) {
         cookieBanner.setAttribute('hidden', '');
       }
     }
-    
     if (cookieAcceptBtn) {
       cookieAcceptBtn.addEventListener('click', () => {
         setCookieConsent('all');
         closeBanner();
       });
     }
-    
     if (cookieRejectBtn) {
       cookieRejectBtn.addEventListener('click', () => {
         setCookieConsent('essential');
         closeBanner();
       });
     }
-    
     cookieCloseBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         closeBanner();
       });
     });
-    
     checkCookieBanner();
-    
-    // Footer Year
     const yearEl = document.getElementById('year');
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
